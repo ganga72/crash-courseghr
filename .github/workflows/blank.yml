@@ -1,24 +1,13 @@
-name: Hello World
+name: ci
 
-on: pull_request
+on: push
 
 jobs:
-  build:
+  action-demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Build step
-        run: echo "a demo build"
-
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Test phase
-        run: echo "running test test case"
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Deploy the app
-        run: echo "deplo the app"
+      - name: Checkout the code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: |
