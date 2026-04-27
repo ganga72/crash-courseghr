@@ -6,4 +6,7 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello
+      - name: Hello step
+        run: |
+          echo "This is one line"
+          echo "This is line two"
