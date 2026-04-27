@@ -6,7 +6,7 @@ on:
       environment:
         description: Choose the environment to deploy
         required: true
-        default: test
+        default: prod
         
 jobs:
   inputs_demo:
