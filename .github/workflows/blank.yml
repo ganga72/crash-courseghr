@@ -6,7 +6,14 @@ on:
       environment:
         description: Choose the environment to deploy
         required: true
-        default: prod
+        default: dev
+        options:
+          - dev
+          - test
+          - prod
+      artifact_tag:
+        description: Choose the git tag to deploy
+        required: true
         
 jobs:
   inputs_demo:
