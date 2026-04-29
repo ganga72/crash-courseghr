@@ -3,8 +3,7 @@ name: Outputs Demo
 on: push
 
 jobs:
-  job1:
-    build:
+  job1: Build
       outputs:
         version: ${{ steps.step1.outputs.version }}
     runs-on: ubuntu-latest
