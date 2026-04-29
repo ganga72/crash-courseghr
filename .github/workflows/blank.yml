@@ -1,23 +1,23 @@
-name: Env demo
+name: Outputs demo
 
-on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: Choose the environment to deploy
-        required: true
-        default: dev
-        options:
-          - dev
-          - test
-          - prod
-      artifact_tag:
-        description: Choose the git tag to deploy
-        required: true
-        
+on: push
+
 jobs:
-  inputs_demo:
+  job1:
+    build:
+      outputs:
+        version: ${{ steps.step1.outputs.version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step one Build step
+        id: step1
+        run: echo"version=0.1" >> $GITHUB_OUTPUT
+      - name: step two
+        run: echo "this version is $ {{ steps.step1.outputs.version }}"
+
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy the App
-        run: echo "Deplying the ${{ inputs.artifact_tag }} application to ${{ inputs.environment }}"
+        run: echo "we are deploying the app with version $ {{ needs.build.outputs.version }}"
